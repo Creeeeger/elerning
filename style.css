@@ -1,0 +1,626 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap");
+
+body {
+    margin: 0;
+}
+
+@keyframes slideIn {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes minimize {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+/* Apply the animation to the sidebar when closing */
+.sidebar.minimize {
+    animation: minimize 0.6s ease;
+}
+
+.sidebar.active {
+    width: 95%;
+    height: 95vh;
+    opacity: 1;
+    animation: none;
+    /* Disable the animation when the sidebar is active */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 95vh;
+    margin: 10px 10px;
+    padding: 20px 40px;
+    background: rgba(0, 100, 100, 0.2);
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 100, 0.2);
+    border-radius: 50px;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.fold-out-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.fold-out-list.active {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.fold-out-item {
+    cursor: pointer;
+    transition: opacity 0.6s ease;
+}
+
+.dummy-element {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.dummy-element.active {
+    opacity: 1;
+}
+
+.sidebar img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #555;
+}
+
+nav .fold-out-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #555;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+.fold-out-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fold-out-item {
+    position: relative;
+}
+
+.fold-out-item:hover .fold-out-list {
+    max-height: 500px;
+    /* Set to a value larger than your expected height */
+    opacity: 1;
+}
+
+.fold-out-content {
+    display: none;
+    position: absolute;
+    background-color: #555;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    width: 200px;
+}
+
+.dummy-element {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.main {
+    margin-left: 220px;
+    /* Adjust to match sidebar width + some margin */
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(29, 51, 92, 1);
+    zoom: 100%;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+.container .btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 50px;
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .btn a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 10px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400px;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+}
+
+.container .btn:hover a {
+    letter-spacing: 3px;
+}
+
+.container .btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    /* For WebKit browsers */
+
+}
+
+.container .btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.container .btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1200ff;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.container .btn:hover::before {
+    bottom: 0;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+}
+
+.container .btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1200ff;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.container .btn:hover::after {
+    top: 0;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+}
+
+.container .btn:nth-child(1)::before,
+.container .btn:nth-child(1)::after {
+    background: #1200ff;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.container .box {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 30px;
+    transition: 0.5s;
+}
+
+.container .box::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+}
+
+.container .box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+    filter: blur(30px);
+}
+
+/* Disable blur for WebKit browsers */
+@supports (-webkit-appearance: none) {
+    .container .box::after {
+        filter: none;
+    }
+
+    .container .box:hover:before,
+    .container .box:hover:after {
+        transform: skewX(0deg);
+        left: 20px;
+        width: calc(100% - 90px);
+    }
+
+    .container .box:nth-child(1):before,
+    .container .box:nth-child(1):after {
+        background: linear-gradient(209deg, #478489, #284273)
+    }
+
+    .container .box span {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    .container .box span::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: 0.4s;
+        animation: animate 2s ease-in-out infinite;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08)
+    }
+
+    .container .box:hover span::before {
+        top: -50px;
+        left: 50px;
+        width: 100px;
+        height: 100px;
+        opacity: 1;
+    }
+
+    .container .box span::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: 0.6s;
+        animation: animate 2s ease-in-out infinite;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        animation-delay: -1s;
+    }
+
+    .container .box:hover span:after {
+        bottom: -50px;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+        opacity: 1;
+    }
+
+    @keyframes animate {
+
+        0%,
+        100% {
+            transform: translateY(10px);
+        }
+
+        50% {
+            transform: translate(-10px);
+        }
+    }
+
+    .container .box .content {
+        position: relative;
+        left: 0;
+        padding: 20px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .ob {
+        position: relative;
+        margin: 0 10px;
+        padding: 20px 40px;
+        background: rgba(0, 100, 100, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 50px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .ob1 {
+        position: relative;
+        margin: 0 15px;
+        padding: 30px 30px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .ob2 {
+        position: relative;
+        padding: 30px 0px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .ob3 {
+        position: relative;
+        margin: 0 15px;
+        padding: 30px 30px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .container .box .content h2 {
+        font-size: 5px;
+        color: #fff;
+        margin-bottom: 10px;
+        text-align: center;
+
+    }
+
+    .container .box .content p {
+        font-size: 2em;
+        margin-bottom: 10px;
+        line-height: 1.4em;
+        text-align: center;
+
+    }
+
+
+
+    .container .box .content a {
+        display: inline-block;
+        font-size: 1.1em;
+        color: #111;
+        background: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+
+    .container .box img {
+        width: auto;
+        height: auto;
+        display: block;
+    }
+
+    .container .box .content a:hover {
+        background: #ffcf4d;
+        border: 1px solid rgba(255, 0, 88, 0.4);
+        box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+    }
+
+    .content_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        marign: 0 auto;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    sup {
+        font-family: Gill Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 22px;
+        text-transform: capitalize;
+    }
+
+    a,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    @media screen and (max-width: 1600px) {
+
+        .sidebar {
+            display: none;
+        }
+
+
+        .main {
+            margin-left: 0px;
+            margin: 0px;
+        }
+
+    }
+
+    @media screen and (min-width: 1600px) {
+        .sidebar {
+            display: block !important;
+            /* Force the sidebar to be visible for screens 1600px or larger */
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        body {
+            zoom: 115%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .btn {
+            margin-bottom: 10px;
+        }
+
+        .neverending .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            margin-bottom: 30px;
+        }
+
+        #info .row {
+            flex-direction: column;
+        }
+
+        #why .row {
+            flex-direction: column;
+        }
+
+        #subj .row {
+            flex-direction: column;
+        }
+
+        .container {
+            margin: 0;
+        }
+    }

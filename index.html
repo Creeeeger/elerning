@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wrekin College Elearning Hub</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wrekin E-Learning Hub">
+</head>
+
+<body>
+    <style>
+        @keyframes blink {
+
+            0%,
+            100% {
+                color: red;
+            }
+
+            50% {
+                color: black;
+            }
+        }
+
+        p.blinking {
+            animation: blink 3s infinite;
+        }
+    </style>
+
+    <div class="sidebar">
+        <div style="height: 20px;"></div>
+        <img src="media/logo.png" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);" alt="Image">
+        <div class="company-name">Wrekin College</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#info">Information</a>
+            <a href="#subj">Subjects</a>
+            <a href="#subjb">End of Subjects</a>
+            <div class="fold-out-item" onclick="toggleList('list1')" style="text-decoration: underline;">For Pupils</div>
+            <ul class="fold-out-list" id="list1">
+                <li class="fold-out-item">
+                    <a href="https://drive.google.com/file/d/1oVulqiXYXij9p0bqXongnJ_fIn8dms9V/view" class="dummy-element">Pupils Handbook</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1WMJwJL7VJLDCbUzqfUJAPl84MgLZgYMKmS93-EO3peM/edit#gid=0" class="dummy-element">Prep timetable</a>
+                    <a href="https://docs.google.com/document/d/1uClbo8ViiMmfLPClGkA2vwEUeoYcFcMx/edit" class="dummy-element">Dining Hall Christmas 2023</a>
+                </li>
+            </ul>
+            <div class="fold-out-item" onclick="toggleList('list2')" style="text-decoration: underline;">Wrekin Activities</div>
+            <ul class="fold-out-list" id="list2">
+                <li class="fold-out-item">
+                    <a href="https://sites.google.com/wrekincollege.com/wrekin-starters/home" class="dummy-element">Wrekin Starters</a>
+                    <a href="https://sites.google.com/wrekincollege.com/echo/home" class="dummy-element">Wrekin echo</a>
+                    <a href="hof/index.html" class="dummy-element">Hall of Fame</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="ob2">
+            <p style="text-align: center; background: -webkit-linear-gradient(left, #7a00ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 25px; font-weight: bold;">NEW!</p>
+
+            <p>Hall of Fame - to honour students who have achieved exceptional results</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="area" style="width: 100%; height: 100%;">
+            <div id="home">
+                <div style="height: 60px;"></div>
+
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="ob" style="background-image: url('media/top.jpeg'); background-size: cover; background-position: center;">
+                    <div class="container">
+
+                        <h1 class="opening-text">Welcome to the Wrekin College E-Learning-Hub 2.0</h1>
+
+                        <style>
+                            .opening-text {
+                                opacity: 0;
+                                transform: translateY(20px);
+                                transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+                                -webkit-text-stroke: 1px black;
+                                text-shadow: 2px 2px 2px #000;
+                            }
+                        </style>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const openingText = document.querySelector('.opening-text');
+
+                                // Trigger the animation when the page is loaded
+                                setTimeout(() => {
+                                    openingText.style.opacity = '1';
+                                    openingText.style.transform = 'translateY(0)';
+                                }, 500); // You can adjust the delay based on your preference
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .menu-icon {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 20;
+            }
+
+            @media screen and (min-width: 1601px) {
+                .menu-icon {
+                    display: none;
+                }
+
+            }
+
+            @media screen and (max-width: 1600px) {
+                .sidebar {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 10;
+                    margin: 5px 0px;
+                    padding: 0.5px 0.5px;
+                    overflow-y: auto;
+                    animation: slideIn 0.6s ease;
+                }
+            }
+
+            .line {
+                width: 30px;
+                height: 3px;
+                background-color: white;
+                margin: 6px 0;
+            }
+        </style>
+
+        <script>
+            function toggleMenu() {
+                var sidebar = document.querySelector('.sidebar');
+                var body = document.querySelector('body');
+
+                if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+
+                    // Open the sidebar
+                    sidebar.classList.remove('minimize');
+                    sidebar.classList.add('slideIn');
+                    sidebar.style.display = 'block';
+                    body.style.overflow = 'hidden'; // Prevent scrolling when the sidebar is open
+                } else {
+                    // Close the sidebar with animation
+                    sidebar.classList.remove('slideIn', 'active');
+                    sidebar.classList.add('minimize');
+                    body.style.overflow = 'auto'; // Allow scrolling when the sidebar is closed
+
+                    // Add an event listener for the animationend event
+                    sidebar.addEventListener('animationend', function() {
+                        // Set display to 'none' after the animation is complete
+                        sidebar.style.display = 'none';
+                    }, {
+                        once: true
+                    }); // Use { once: true } to ensure the event listener only fires once
+                }
+            }
+        </script>
+
+        <div style="height: 75px;"></div>
+
+        <div class="ob">
+            <div id="info">
+                <p style="text-align: center; background: -webkit-linear-gradient(left, #00c4ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 50px; font-weight: bold; text-decoration: underline;">Information</p>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <style>
+                        .ob1 a {
+                            text-decoration: none;
+                        }
+
+                        .columns {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .column {
+                            flex: 1;
+                            max-width: 48%;
+                        }
+
+                        .ob1 a {
+                            color: white;
+                            display: block;
+                            text-align: center;
+                            margin-top: 10px;
+                            padding-bottom: 10px;
+                            border-bottom: 1px solid white;
+
+                        }
+
+                        .ob2 p {
+
+                            text-align: center;
+                        }
+                    </style>
+                    <div class="ob1">
+                        <p style="text-align: center; background: -webkit-linear-gradient(left, #7a00ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 25px; font-weight: bold;">Useful Links</p>
+
+                        <a href="https://mail.google.com/mail/u/0/#inbox" style="color: white; display: block; text-align: center; margin-top: 10px;">GMail</a>
+                        <a href="https://classroom.google.com/u/0/h" style="color: white; display: block; text-align: center; margin-top: 10px;">Classroom</a>
+                        <a href="https://calendar.google.com/calendar/u/0/r?tab=rc" style="color: white; display: block; text-align: center; margin-top: 10px;">Calendar</a>
+                        <a href="https://drive.google.com/drive/u/0/my-drive" style="color: white; display: block; text-align: center; margin-top: 10px;">Drive</a>
+                        <a href="https://wrekinoldhall.students.isams.cloud/api/homepage/" style="color: white; display: block; text-align: center; margin-top: 10px;">iSAMS</a>
+                        <a href="https://sites.google.com/wrekincollege.com/mobilityprint/home" style="color: white; display: block; text-align: center; margin-top: 10px;">Mobility Print</a>
+
+                        <a href="https://www.gcsepod.com" style="color: white; display: block; text-align: center; margin-top: 10px;">GCSEPod</a>
+                        <a href="https://sites.google.com/wrekincollege.com/libraryhome/study-resources?authuser=0" style="color: white; display: block; text-align: center; margin-top: 10px;">Study Resources</a>
+                        <a href="https://docs.google.com/spreadsheets/d/1sScIdimCssAmP61LPIubmYfPrWFOwOv0rQHVabEYRsw/edit#gid=0" style="color: white; display: block; text-align: center; margin-top: 10px;">KS3 Prep Timetable</a>
+                        <a href="https://sites.google.com/wrekincollege.com/exams/home" style="color: white; display: block; text-align: center; margin-top: 10px;">Exams Information</a>
+                        <a href="https://portal.focusonsound.com/expired/" style="color: white; display: block; text-align: center; margin-top: 10px;">Focus on Sound</a>
+                        <a href="https://sites.google.com/wrekincollege.com/wrekinwellbeing/home" style="color: white; display: block; text-align: center; margin-top: 10px;">Wellbeing at Home</a>
+                    </div>
+                    <div style="height: 45px;"></div>
+                    <div class="ob1">
+                        <p style="text-align: center; background: -webkit-linear-gradient(left, #7a00ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 25px; font-weight: bold;">Digital Literacy</p>
+                        <a href="https://drive.google.com/file/d/10sklYrY6OfP4X-LAKWnCyToPk23ryCfb/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Digital Literacy Playlist Introduction</a>
+                        <a href="https://drive.google.com/file/d/10gxKEKBFjGV78VLWhlD--cRFVU62r9FU/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Accessing the eLearning Hub</a>
+                        <a href="https://drive.google.com/file/d/10lG4mlUU2eP5iFKdWcP7SLyM8qz-Bfhz/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Navigating the eLearning Hub</a>
+                        <a href="https://drive.google.com/file/d/10mXNp_SWQPo4quYWAPGh38t6nPv_fEy-/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Using Google Drive and Google Drive File Stream</a>
+                        <a href="https://drive.google.com/file/d/10peA74iGD5Dy8QUOsduDJBcriEt1jnnT/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Using and navigating Google Classroom</a>
+                        <a href="https://drive.google.com/file/d/10rWfHbytoIYBdCHjJT5MDC4PbX4zUqYD/view" style="color: white; display: block; text-align: center; margin-top: 10px;">Using Docs, Slides and Sheets and File Structure</a>
+                        <a href="https://drive.google.com/file/d/11-ce-olZmnAVf-4a0raSRDUmOUKOyQ-Z/view" style="color: white; display: block; text-align: center; margin-top: 10px;">How to send emails and etiquette surrounding emails</a>
+                        <a href="https://drive.google.com/file/d/1WBi1jZ4Qxu2abnOG-L5OaF7atI_XnFkh/view" style="color: white; display: block; text-align: center; margin-top: 10px;">How to manage prep on Google Classroom and Calendar</a>
+                    </div>
+                    <div style="height: 45px;"></div>
+                    <div class="ob1">
+                        <p style="text-align: center; background: -webkit-linear-gradient(left, #7a00ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 25px; font-weight: bold;">Well-being</p>
+                        <a href="https://drive.google.com/file/d/18XmeFVMeMjAQhUbC1qB-ycA_MVTIZvTg/view" style="color: white; display: block; text-align: center; margin-top: 10px; border-bottom: 1px solid white; padding-bottom: 10px;">Junior Wellbeing App</a>
+                        <a href="https://drive.google.com/file/d/18YdTwXTU52Vjo-8ydUS25VptHHpdRGTs/view" style="color: white; display: block; text-align: center; margin-top: 10px; border-bottom: 1px solid white; padding-bottom: 10px;">Senior Wellbeing</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqkUoGpNdYnQ1_Nkbf4YvU_a8RPsLC14f1M9Bq7Q461qpJcA/viewform" style="color: white; display: block; text-align: center; margin-top: 10px; border-bottom: 1px solid white; padding-bottom: 10px;">If you have a concern click here</a>
+                        <a href="https://drive.google.com/drive/folders/1EcdE0m5oLcueN5OMvP-9_GXxzVewHGGt" style="color: white; display: block; text-align: center; margin-top: 10px; border-bottom: 1px solid white; padding-bottom: 10px;">Effective Revision Strategies</a>
+                        <div style="height: 25px;"></div>
+
+                        <div class="ob2">
+                            <p style="text-align: center; background: -webkit-linear-gradient(left, #7a00ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 20px; font-weight: bold;">Lost and Found</p>
+
+                            <p>Lost stuff comes to this place</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 75px;"></div>
+        <div class="ob">
+            <div id="subj">
+                <p style="text-align: center; background: -webkit-linear-gradient(left, #00c4ff, #00ebff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 50px; font-weight: bold; text-decoration: underline;">Subjects</p>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/accounting/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/accounting.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+                                    <p>Accounting</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/art/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Art.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+                                    <p>Art</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/business/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Business.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+                                    <p>Business</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/computing/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Computing.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Computing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/designtechnology/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Design.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+                                    <p>Design Technology</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/drama/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Drama.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+                                    <p>Drama and Theatre Studies</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/ealdepartment/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/EAL.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>EAL</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/economics/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Economics.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Economics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/english/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/English.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>English</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/epq/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/epq.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>EPQ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/franklinsociety/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Franklin.png" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Franklin Society</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/french/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/French.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>French</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/geography/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/geography.png" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Geography</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/history/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/His.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>History</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/libraryhome/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Library.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Library</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/maths/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Mathematics.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Mathematics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/Wrekincollege.com/musiccurriculum/">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Music.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Music</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/physical-education/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/sport.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>PE and Sport</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/politics/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Politics.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Politics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/pshe/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/PSHE.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>PSHE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://sites.google.com/wrekincollege.com/psychology/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Psychology.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Psychology</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-around;">
+                    <a href="https://sites.google.com/wrekincollege.com/religious-studies/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/RE.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Religious Studies</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://sites.google.com/wrekincollege.com/wrekin-science/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/science.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Science</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div id="subjb">
+                        <div style="height: 5px;"></div>
+
+                    </div>
+                    <a href="https://sites.google.com/wrekincollege.com/spanish/home">
+                        <div class="container">
+                            <div class="box">
+                                <span></span>
+
+                                <div class="content">
+                                    <img src="media/Spanish.jpg" style="object-fit: cover; border-radius: 15px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); width: 244px; height: 177px;" alt="Image">
+
+
+                                    <p>Spanish</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (!targetElement) return;
+
+                    const targetOffset = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const duration = 1000; // Adjust the duration as needed
+                    const startTime = performance.now();
+                    const startScrollY = window.scrollY;
+
+                    function scrollStep(timestamp) {
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        const easeProgress = easeInOutQuad(progress);
+                        const newScrollY = startScrollY + easeProgress * (targetOffset - startScrollY);
+                        window.scrollTo(0, newScrollY);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(scrollStep);
+                        }
+                    }
+
+                    function easeInOutQuad(t) {
+                        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                    }
+
+                    requestAnimationFrame(scrollStep);
+                });
+            });
+        });
+
+
+
+        function toggleList(listId) {
+            var list = document.getElementById(listId);
+            list.classList.toggle('active');
+
+            var dummyElements = list.querySelectorAll('.dummy-element');
+            dummyElements.forEach(function(element) {
+                element.classList.toggle('active');
+            });
+        }
+
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
+    </script>
+
+</body>
+</html>
