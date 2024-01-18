@@ -20,19 +20,24 @@ body {
 
 @keyframes minimize {
     0% {
-        width: 100%;
+        transform: scaleY(1) scaleX(1);
+        transform-origin: top left;
         height: 100%;
-        opacity: 1;
+    }
+
+    50% {
+        transform: scaleY(0.1) scaleX(1);
+        transform-origin: top left;
+        height: 20%;
     }
 
     100% {
-        width: 0;
-        height: 0;
-        opacity: 0;
+        transform: scaleY(0) scaleX(0);
+        transform-origin: top left;
+        height: 20%;
     }
 }
 
-/* Apply the animation to the sidebar when closing */
 .sidebar.minimize {
     animation: minimize 0.6s ease;
 }
@@ -42,7 +47,6 @@ body {
     height: 95vh;
     opacity: 1;
     animation: none;
-    /* Disable the animation when the sidebar is active */
 }
 
 .sidebar {
@@ -140,7 +144,6 @@ nav a:hover {
 
 .fold-out-item:hover .fold-out-list {
     max-height: 500px;
-    /* Set to a value larger than your expected height */
     opacity: 1;
 }
 
@@ -162,7 +165,6 @@ nav a:hover {
 
 .main {
     margin-left: 220px;
-    /* Adjust to match sidebar width + some margin */
 }
 
 body {
@@ -234,8 +236,6 @@ body {
     transition: 0.5s;
     filter: blur(0px);
     -webkit-filter: blur(0px);
-    /* For WebKit browsers */
-
 }
 
 .container .btn:hover a::before {
@@ -333,7 +333,6 @@ body {
     filter: blur(30px);
 }
 
-/* Disable blur for WebKit browsers */
 @supports (-webkit-appearance: none) {
     .container .box::after {
         filter: none;
@@ -505,8 +504,6 @@ body {
 
     }
 
-
-
     .container .box .content a {
         display: inline-block;
         font-size: 1.1em;
@@ -580,7 +577,6 @@ body {
     @media screen and (min-width: 1600px) {
         .sidebar {
             display: block !important;
-            /* Force the sidebar to be visible for screens 1600px or larger */
         }
     }
 
