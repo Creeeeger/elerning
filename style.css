@@ -576,7 +576,7 @@ body {
 
     @media screen and (max-width: 1000px) {
         body {
-            zoom: 115%;
+            zoom: 90%;
         }
 
         .container {
