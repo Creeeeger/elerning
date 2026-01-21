@@ -20,21 +20,15 @@ body {
 
 @keyframes minimize {
     0% {
-        transform: scaleY(1) scaleX(1);
-        transform-origin: top left;
+        width: 100%;
         height: 100%;
-    }
-
-    50% {
-        transform: scaleY(0.1) scaleX(1);
-        transform-origin: top left;
-        height: 20%;
+        opacity: 1;
     }
 
     100% {
-        transform: scaleY(0) scaleX(0);
-        transform-origin: top left;
-        height: 20%;
+        width: 0;
+        height: 0;
+        opacity: 1;
     }
 }
 
@@ -582,7 +576,7 @@ body {
 
     @media screen and (max-width: 1000px) {
         body {
-            zoom: 115%;
+            zoom: 90%;
         }
 
         .container {
